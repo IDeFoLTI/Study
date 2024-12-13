@@ -1,0 +1,30 @@
+CREATE DATABASE school_management;
+USE school_management;
+
+CREATE TABLE groups (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    g_name VARCHAR(255) NOT NULL
+);
+CREATE TABLE teachers (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    t_name VARCHAR(255) NOT NULL
+);
+CREATE TABLE courses (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    c_name VARCHAR(255) NOT NULL,
+    teacher_id INT,
+    FOREIGN KEY (teacher_id) REFERENCES teachers(id)
+);
+CREATE TABLE students (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    f_name VARCHAR(255) NOT NULL,
+    group_id INT,
+    FOREIGN KEY (group_id) REFERENCES groups(id)
+);
+CREATE TABLE student_courses (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    student_id INT,
+    course_id INT,
+    FOREIGN KEY (student_id) REFERENCES students(id),
+    FOREIGN KEY (course_id) REFERENCES courses(id)
+);
